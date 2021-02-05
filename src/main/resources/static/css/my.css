@@ -117,12 +117,13 @@ body {
     height: 20px;
     line-height:20px;
 }
-#login .layui-btn{
-    margin-left: 18px;
+#login .layui-btn
+,#register .layui-btn{
+    margin-left: 9px;
 }
 /* 注册验证样式 */
 #error_box{
-    margin-left: 60px;
+    margin-left: 120px;
     font-size: 20px;
-    color: blue;
+    color: #FF5722;
 }
