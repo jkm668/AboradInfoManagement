@@ -68,14 +68,14 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">电话号码：</label>
                     <div class="layui-input-inline">
-                        <input type="tel" id="phonenumber" name="phonenumber" required lay-verify="required"
+                        <input type="text" id="tel" name="tel" required lay-verify="required"
                             placeholder="请输入电话号码" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">电子邮箱：</label>
                     <div class="layui-input-inline">
-                        <input type="email" id="email" name="email" required lay-verify="required" placeholder="请输入电子邮箱"
+                        <input type="text" id="email" name="email" required lay-verify="required" placeholder="请输入电子邮箱"
                             autocomplete="off" class="layui-input">
                     </div>
                 </div>
@@ -119,32 +119,42 @@
     <!-- 注册校验 -->
     <script type="text/javascript">
         function fnRegister() {
-            var oUname = document.getElementById("username")
-            var oUpass = document.getElementById("password")
-            var oError = document.getElementById("error_box")
-            var isError = true;
+            var reg_username = /^\w{8,20}$/
+            var reg_password = /^\w{8,20}$/
+            var reg_tel = /^1[3456789]\d{9}$/
+            var reg_email = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+            var username = document.getElementById("username")
+            var password = document.getElementById("password")
+            var tel = document.getElementById("tel")
+            var email = document.getElementById("email")
+            var Error = document.getElementById("error_box")
 
-            if (oUname.value.length > 20 || oUname.value.length < 6) {
-                oError.innerHTML = "用户名请输入6-20位字符";
-                isError = false;
+            if (reg_username.test(username.value)) {
+
+            }else{
+                Error.innerHTML = "用户名格式错误";
                 return;
             }
-            else if ((oUname.value.charCodeAt(0) >= 48) && (oUname.value.charCodeAt(0) <= 57)) {
-                oError.innerHTML = "首字符必须为字母";
+
+            if (reg_password.test(password.value)) {
+
+            }else{
+                Error.innerHTML = "密码格式错误"
                 return;
             }
-            else for (var i = 0; i < oUname.value.charCodeAt(i); i++) {
-                if ((oUname.value.charCodeAt(i) < 48) || (oUname.value.charCodeAt(i) > 57) &&
-                    (oUname.value.charCodeAt(i) < 97) || (oUname.value.charCodeAt(i) > 122)) {
-                    oError.innerHTML = "必须为字母跟数字组成";
-                    return;
-                }
-            }
-            if (oUpass.value.length > 20 || oUpass.value.length < 6) {
-                oError.innerHTML = "密码请输入6-20位字符"
-                isError = false;
+
+            if(reg_tel.test(tel.value)){
+            }else{
+                Error.innerHTML = "电话格式错误"
                 return;
             }
+            if(reg_email.test(email.value)){
+            }else{
+                Error.innerHTML = "邮箱格式错误"
+                return;
+            }
+            Error.innerHTML = "成功注册！"
+
         }
     </script>
 </body>
