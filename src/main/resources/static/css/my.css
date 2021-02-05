@@ -1,0 +1,128 @@
+.clearfix:after{
+    content:"";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.clearfix{
+    *zoom: 1;
+}
+body {
+    background-color: #F0F0F0;
+}
+#content{
+    margin: 10px auto;
+    width: 1210px;
+}
+#login
+,#register{
+    position: relative;
+    margin-left: 5px;
+    float: left; 
+}
+#bg{
+    height: 460px;
+    width: 500px;
+    background: url(../img/背景图.jpg);   
+    background-size: cover;
+    background-position-x: center;
+    filter: blur(1px);
+}
+#login-form{
+    position: absolute;
+    top: 80px;
+    left: 50px;
+    width: 450px;
+}
+#register-form{
+    position: absolute;
+    top: 30px;
+    left: 50px;
+    width: 450px;
+}
+#login label
+,#register label{
+    font-weight: bold;
+}
+#login h1
+,#register h1{
+    font-weight: bold;
+}
+#login-carousel{
+    float: left;
+}
+#car1{
+    background: url(../img/轮播1.jpg);
+
+}
+#car2{
+    background: url(../img/轮播2.jpg);
+
+}
+#car3{
+    background: url(../img/轮播3.jpg);
+
+}
+#car4{
+    background: url(../img/轮播4.jpg);
+
+}
+#car5{
+    background: url(../img/轮播5.jpg);
+
+}
+#login-carousel div{
+    background-size: cover;
+}
+.layui-form-label{
+    padding-left: 40px;
+    padding-right: 0px;
+    text-align: center;
+}
+/* 验证码样式 */
+.yzm{
+    height: 35px;
+    margin:0 auto;
+    width: 72%;
+    line-height: 35px;
+    position: relative;
+}
+.YZM_code{
+    width:35%;
+    height: 35px;
+    border:0;
+    border-color: transparent;
+    font-size:14px;
+    padding-left: 12px;
+    /* margin-left: 10px; */
+}
+.YZM_pic{
+    display: block;
+    width:30%;
+    height:35px;
+    background-color: #1E9FFF;
+    color:#FFF;
+    position: absolute;
+    top: 0px;
+    left:59%;
+    border-radius: 5px;
+    text-align: center;
+}
+.YZM_error{
+    width:70%;
+    color:red;
+    font-size: 14px;
+    margin:0 auto;
+    height: 20px;
+    line-height:20px;
+}
+#login .layui-btn{
+    margin-left: 18px;
+}
+/* 注册验证样式 */
+#error_box{
+    margin-left: 60px;
+    font-size: 20px;
+    color: blue;
+}
