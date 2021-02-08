@@ -32,7 +32,7 @@ public class UserController {
                 throw new RuntimeException("注册失败！");
         }catch (Exception e){
             e.printStackTrace();
-            responseHttpStatus = new ResponseHttpStatus(RetCode.FAIL.getCode(), e.getMessage());
+            responseHttpStatus = new ResponseHttpStatus(RetCode.FAIL.getCode(), "注册失败");
         }
         return responseHttpStatus;
     }
@@ -56,7 +56,7 @@ public class UserController {
                 responseHttpStatus = new ResponseHttpStatus(RetCode.FAIL.getCode(), "用户名不存在");
         }catch (Exception e){
             e.printStackTrace();
-            responseHttpStatus = new ResponseHttpStatus(RetCode.FALSE.getCode(), e.getMessage());
+            responseHttpStatus = new ResponseHttpStatus(RetCode.FALSE.getCode(), "登录失败");
         }
         return responseHttpStatus;
     }
