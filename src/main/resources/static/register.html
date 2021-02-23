@@ -12,53 +12,34 @@
 </head>
 
 <body>
-    <div id="navi">
-        <ul class="layui-nav" lay-filter="">
-            <li class="layui-nav-item"><a href="">主页</a></li>
-            <li class="layui-nav-item"><a href="">留学资讯</a></li>
-            <li class="layui-nav-item"><a href="">专家咨询</a></li>
-            <li class="layui-nav-item"><a href="">个人中心</a></li>
-            <li class="layui-nav-item layui-this" id="sign"><a href="">登录/注册</a></li>
-        </ul>
-    </div>
-    <div id="content" class="clearfix">
-        <!-- 轮播图 -->
-        <div class="layui-carousel" id="login-carousel">
-            <div carousel-item>
-                <div id="car1"></div>
-                <div id="car2"></div>
-                <div id="car3"></div>
-                <div id="car4"></div>
-                <div id="car5"></div>
+<div id="app">
+    <div id="login">
+        <div id="login-bg"></div>
+        <div id="login-content" class="clearfix">
+            <div>
+                <h1>留学信息系统</h1>
+                <hr class="layui-bg-red">
             </div>
-        </div>
-        <!-- 表单 -->
-        <div id="register">
-            <div id="bg"></div>
             <form class="layui-form " id="register-form" action="">
-                <div>
-                    <h1>留学信息系统-注册</h1>
-                    <hr class="layui-bg-red">
-                </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">账户：</label>
                     <div class="layui-input-inline">
                         <input type="text" id="username" name="username" required lay-verify="required"
-                            placeholder="请输入账户" autocomplete="off" class="layui-input">
+                               placeholder="8-20位数字字母" autocomplete="off" class="layui-input" v-model="user.username">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">密码：</label>
                     <div class="layui-input-inline">
                         <input type="password" id="password" name="password" required lay-verify="required"
-                            placeholder="请输入密码" autocomplete="off" class="layui-input">
+                               placeholder="8-20位数字字母" autocomplete="off" class="layui-input" v-model="user.password">
                     </div>
                 </div>
                 <div class="layui-form-item">
-                    <label class="layui-form-label">用户类型</label>
+                    <label class="layui-form-label">用户类型：</label>
                     <div class="layui-input-inline">
-                        <select name="type" lay-verify="required">
-                            <option value=""></option>
+                        <select name="type" lay-verify="required" v-model="user.type">
+                            <!-- <option value=""></option> -->
                             <option value="0">普通用户</option>
                             <option value="1">专家用户</option>
                             <option value="2">管理用户</option>
@@ -68,95 +49,114 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">电话号码：</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="tel" name="tel" required lay-verify="required"
-                            placeholder="请输入电话号码" autocomplete="off" class="layui-input">
+                        <input type="text" id="phoneNumber" name="phoneNumber" required lay-verify="required"
+                               placeholder="请输入电话号码" autocomplete="off" class="layui-input" v-model="user.phonenumber">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">电子邮箱：</label>
                     <div class="layui-input-inline">
-                        <input type="text" id="email" name="email" required lay-verify="required" placeholder="请输入电子邮箱"
-                            autocomplete="off" class="layui-input">
+                        <input type="text" id="email" name="email" required lay-verify="required"
+                               placeholder="请输入电子邮箱" autocomplete="off" class="layui-input" v-model="user.email">
                     </div>
                 </div>
                 <div id="error_box"><br></div>
                 <div class="layui-form-item">
                     <div class="layui-input-block">
-                        <button class="layui-btn" lay-submit lay-filter="formDemo" onclick="fnRegister()">立即注册</button>
+                        <button class="layui-btn" lay-submit lay-filter="formDemo"
+                            @click="submitRegister" >立即注册</button>
                     </div>
                 </div>
 
             </form>
         </div>
     </div>
-
-
-
-
-    <script src="layui.js"></script>
-    <script>
-        layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider', 'form'], function () {
-            var carousel = layui.carousel //轮播
-                , form = layui.form //表单
-            // 轮播图设定
-            carousel.render({
-                elem: '#login-carousel'
-                , width: '700px' //设置容器宽度
-                , height: '460px'//设置容器高度
-                //,arrow: 'always' //始终显示箭头
-                //,anim: 'updown' //切换动画方式
-            });
-            //监听提交
-            form.on('submit(formDemo)', function (data) {
-                layer.msg(JSON.stringify(data.field));
-                return false;
-            });
-
-        })
-
-    </script>
-
-    <!-- 注册校验 -->
-    <script type="text/javascript">
-        function fnRegister() {
-            var reg_username = /^\w{8,20}$/
-            var reg_password = /^\w{8,20}$/
-            var reg_tel = /^1[3456789]\d{9}$/
-            var reg_email = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
-            var username = document.getElementById("username")
-            var password = document.getElementById("password")
-            var tel = document.getElementById("tel")
-            var email = document.getElementById("email")
-            var Error = document.getElementById("error_box")
-
-            if (reg_username.test(username.value)) {
-
-            }else{
-                Error.innerHTML = "用户名格式错误";
-                return;
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data: {
+            user:{
+                username:'',
+                password:'',
+                type:'',
+                phoneNumber:'',
+                email:''
             }
-
-            if (reg_password.test(password.value)) {
-
-            }else{
-                Error.innerHTML = "密码格式错误"
-                return;
+        },
+        methods: {
+            submitRegister(){
+                console.log(this.user.username);
+                axios.post("http://localhost:8888/user/register",this.user).then((res)=>{
+                    console.log(res.data);
+                });
+                // axios.get("http://autumnfish.cn/api/joke/list?num6")
+                // .then(function (response){
+                //     console.log(response);
+                // },function (err){
+                //     console.log(err);
+                // })
             }
-
-            if(reg_tel.test(tel.value)){
-            }else{
-                Error.innerHTML = "电话格式错误"
-                return;
-            }
-            if(reg_email.test(email.value)){
-            }else{
-                Error.innerHTML = "邮箱格式错误"
-                return;
-            }
-            Error.innerHTML = "成功注册！"
-
         }
-    </script>
+
+    })
+</script>
+
+<script src="../static/layui.js"></script>
+<script>
+    layui.use(['laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider', 'form'], function () {
+        var form = layui.form //表单
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+
+    })
+</script>
+<!-- 注册校验 -->
+<script type="text/javascript">
+    function fnRegister() {
+        var reg_username = /^\w{8,20}$/
+        var reg_password = /^\w{8,20}$/
+        var reg_tel = /^1[3456789]\d{9}$/
+        var reg_email = /^[A-Za-z0-9\u4e00-\u9fa5]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/
+        var username = document.getElementById("username")
+        var password = document.getElementById("password")
+        var phonenumber = document.getElementById("phonenumber")
+        var email = document.getElementById("email")
+        var Error = document.getElementById("error_box")
+
+        if (reg_username.test(username.value)) {
+
+        } else {
+            Error.innerHTML = "用户名格式错误";
+            return;
+        }
+
+        if (reg_password.test(password.value)) {
+
+        } else {
+            Error.innerHTML = "密码格式错误"
+            return;
+        }
+
+        if (reg_tel.test(tel.value)) {
+        } else {
+            Error.innerHTML = "电话格式错误"
+            return;
+        }
+        if (reg_email.test(email.value)) {
+        } else {
+            Error.innerHTML = "邮箱格式错误"
+            return;
+        }
+        Error.innerHTML = "成功注册！"
+
+    }
+</script>
 </body>
 
 </html>

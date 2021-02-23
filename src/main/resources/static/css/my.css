@@ -1,9 +1,10 @@
+.clearfix:before,
 .clearfix:after{
-    content:"";
-    display: block;
-    height: 0;
+    content: "";
+    display: table;
+}
+.clearfix:after{
     clear: both;
-    visibility: hidden;
 }
 .clearfix{
     *zoom: 1;
@@ -11,35 +12,39 @@
 body {
     background-color: #F0F0F0;
 }
+#login{
+    overflow: hidden;
+}
+#login-bg{
+    position: absolute;
+    z-index: -1;
+    background: url(../img/背景图.jpg) no-repeat center;
+    background-size: cover;
+    height: 577px;
+    width: 100%;
+    filter: blur(2px);
+}
 #content{
     margin: 10px auto;
     width: 1210px;
 }
-#login
-,#register{
-    position: relative;
-    margin-left: 5px;
-    float: left; 
-}
-#bg{
-    height: 460px;
+#login-content{
+    margin-top: 80px;
+    margin-left: 50%;
+    padding: 15px;
     width: 500px;
-    background: url(../img/背景图.jpg);   
-    background-size: cover;
-    background-position-x: center;
-    filter: blur(1px);
+    background-color: rgba(242, 242, 242, 0.90);
+    /* background-color: rgba(194, 194, 194, 0.90); */
+    border-radius: 15px;
+
 }
-#login-form{
-    position: absolute;
-    top: 80px;
-    left: 50px;
-    width: 450px;
+#login-form
+,#register-form{
+    margin-left: 30px;
+    margin-top: 30px;
 }
 #register-form{
-    position: absolute;
-    top: 30px;
-    left: 50px;
-    width: 450px;
+    margin-left: 30px;
 }
 #login label
 ,#register label{
@@ -49,7 +54,12 @@ body {
 ,#register h1{
     font-weight: bold;
 }
-#login-carousel{
+#index{
+    position: relative;
+    margin-left: 5px;
+    float: left;
+}
+#index-carousel{
     float: left;
 }
 #car1{
@@ -72,7 +82,7 @@ body {
     background: url(../img/轮播5.jpg);
 
 }
-#login-carousel div{
+#index-carousel div{
     background-size: cover;
 }
 .layui-form-label{
@@ -101,7 +111,7 @@ body {
     display: block;
     width:30%;
     height:35px;
-    background-color: #1E9FFF;
+    background-color: rgba(47, 64, 86, 0.9);
     color:#FFF;
     position: absolute;
     top: 0px;
@@ -119,11 +129,16 @@ body {
 }
 #login .layui-btn
 ,#register .layui-btn{
-    margin-left: 9px;
+    margin-left: 14px;
 }
 /* 注册验证样式 */
 #error_box{
+    display: block;
     margin-left: 120px;
-    font-size: 20px;
+    font-size: 18px;
+    height: 24px;
+    line-height: 10px;
     color: #FF5722;
 }
+
+
